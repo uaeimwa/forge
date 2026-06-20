@@ -15,7 +15,7 @@ console.log("hi")
     console.log(data);
     const p = document.getElementById("motivation-text")
     console.log(data['message'])
-    p.src = data['message']
+    p.innerText = data['message']
  
 }
 getAdviceData()
