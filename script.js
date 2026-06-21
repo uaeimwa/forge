@@ -13,7 +13,4 @@ document.getElementById('btn-refresh-motivation').addEventListener('click', () =
         .then(data => {
             textElement.textContent = data.slip.advice;
         })
-        .catch(() => {
-            textElement.textContent = "Failed to load advice. Please try again.";
-        });
 });
