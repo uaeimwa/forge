@@ -1,21 +1,19 @@
 document.getElementById("modes").addEventListener("click", () => {
     document.body.classList.toggle("light-mode");
 });
-document.getElementById("hexa-input").addEventListener("input", (e) => {
-    document.querySelectorAll(".luxury-feature-card").forEach(card => {
-        card.style.backgroundColor = e.target.value;
-    });
+document.getElementById('hexa-input').addEventListener('input', (e) => {
+    document.querySelector('.hexa').style.backgroundColor = e.target.value;
 });
+document.getElementById('btn-refresh-motivation').addEventListener('click', () => {
+    const textElement = document.getElementById('motivation-text');
+    
 
-async function getAdviceData() {
-console.log("hi")
-    const response = await fetch("https://api.adviceslip.com/advice");
-console.log("hi")
-    const data = await response.json();
-    console.log(data);
-    const p = document.getElementById("motivation-text")
-    console.log(data['message'])
-    p.innerText = data['message']
- 
-}
-getAdviceData()
+    fetch('https://api.adviceslip.com/advice')
+        .then(response => response.json())
+        .then(data => {
+            textElement.textContent = data.slip.advice;
+        })
+        .catch(() => {
+            textElement.textContent = "Failed to load advice. Please try again.";
+        });
+});
